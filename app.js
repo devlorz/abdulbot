@@ -24,12 +24,14 @@ function reply(reply_token, msg) {
     },
     (error, response, body) => {
       console.log('wiki body : ', body);
+      const wikiSearchResultList = JSON.parse(body);
+      const title = wikiSearchResultList[1][0];
       const replyBody = JSON.stringify({
         replyToken: reply_token,
         messages: [
           {
             type: 'text',
-            text: body
+            text: title
           }
         ]
       });
