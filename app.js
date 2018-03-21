@@ -29,8 +29,11 @@ function reply(reply_token, msg) {
         (error, response, body) => {
           console.log(`wiki api body: `, body);
           const queryData = JSON.parse(body);
-          console.log('query data : ', queryData.query.pages);
-          callReplyApi(reply_token, queryData);
+          const pages = queryData.query.pages;
+          const extract = pages[Object.keys(pages)[0]].extract;
+          const cleanExtract = extract.replace(/<(?:.|\n)*?>/gm, '');
+          console.log('query data : ', cleanExtract);
+          callReplyApi(reply_token, cleanExtract);
         }
       );
     }
