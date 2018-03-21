@@ -13,11 +13,6 @@ app.post('/webhook', (req, res) => {
 });
 app.listen(port);
 function reply(reply_token, msg) {
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization:
-      'Bearer {QNvmXR/WTbjEOqzSaK/GvT2M7GxnWesBl8QjXI+R+QTc9XfNEBM7W45RNzOKI8XdsNKHGR6VBOugXDetz3B6VDjzhAcY7DPS7h0Z4lWHWTP0I9aRVu+aCMotpLrcm2br/yv38ZTUTEk5Od3DbcD6bwdB04t89/1O/w1cDnyilFU=}'
-  };
   request.get(
     {
       url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${msg}&limit=1&namespace=0&format=json`
@@ -33,6 +28,11 @@ function reply(reply_token, msg) {
 }
 
 function callReplyApi(replyToken, replyMsg) {
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization:
+      'Bearer {QNvmXR/WTbjEOqzSaK/GvT2M7GxnWesBl8QjXI+R+QTc9XfNEBM7W45RNzOKI8XdsNKHGR6VBOugXDetz3B6VDjzhAcY7DPS7h0Z4lWHWTP0I9aRVu+aCMotpLrcm2br/yv38ZTUTEk5Od3DbcD6bwdB04t89/1O/w1cDnyilFU=}'
+  };
   const replyBody = JSON.stringify({
     replyToken: replyToken,
     messages: [
