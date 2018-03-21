@@ -26,27 +26,32 @@ function reply(reply_token, msg) {
       console.log('wiki body : ', body);
       const wikiSearchResultList = JSON.parse(body);
       const title = wikiSearchResultList[1][0];
-      const replyBody = JSON.stringify({
-        replyToken: reply_token,
-        messages: [
-          {
-            type: 'text',
-            text: title
-          }
-        ]
-      });
-      request.post(
-        {
-          url: 'https://api.line.me/v2/bot/message/reply',
-          headers: headers,
-          body: replyBody
-        },
-        (err, res, body) => {
-          console.log('status = ' + res.statusCode);
-          console.log('body = ' + body);
-          console.log('error = ', error);
-        }
-      );
+
+      callReplyApi(title);
+    }
+  );
+}
+
+function callReplyApi(replyMsg) {
+  const replyBody = JSON.stringify({
+    replyToken: reply_token,
+    messages: [
+      {
+        type: 'text',
+        text: replyMsg
+      }
+    ]
+  });
+  request.post(
+    {
+      url: 'https://api.line.me/v2/bot/message/reply',
+      headers: headers,
+      body: replyBody
+    },
+    (err, res, body) => {
+      console.log('status = ' + res.statusCode);
+      console.log('body = ' + body);
+      console.log('error = ', error);
     }
   );
 }
