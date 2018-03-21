@@ -27,14 +27,14 @@ function reply(reply_token, msg) {
       const wikiSearchResultList = JSON.parse(body);
       const title = wikiSearchResultList[1][0];
 
-      callReplyApi(title);
+      callReplyApi(reply_token, title);
     }
   );
 }
 
-function callReplyApi(replyMsg) {
+function callReplyApi(replyToken, replyMsg) {
   const replyBody = JSON.stringify({
-    replyToken: reply_token,
+    replyToken: replyToken,
     messages: [
       {
         type: 'text',
