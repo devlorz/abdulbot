@@ -23,6 +23,7 @@ function reply(reply_token, msg) {
       url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${msg}&limit=1&namespace=0&format=jsonfm`
     },
     (error, response, body) => {
+      console.log('wiki body : ', body);
       const replyBody = JSON.stringify({
         replyToken: reply_token,
         messages: [
