@@ -20,7 +20,7 @@ function reply(reply_token, msg) {
   };
   request.get(
     {
-      url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${msg}&limit=1&namespace=0&format=jsonfm`
+      url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${msg}&limit=1&namespace=0&format=json`
     },
     (error, response, body) => {
       console.log('wiki body : ', body);
