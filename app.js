@@ -22,7 +22,15 @@ function reply(reply_token, msg) {
       const wikiSearchResultList = JSON.parse(body);
       const title = wikiSearchResultList[1][0];
 
-      callReplyApi(reply_token, title);
+      request.get(
+        {
+          url: `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=${title}&format=json`
+        },
+        (error, response, body) => {
+          console.log(`wiki api body: `, body);
+          callReplyApi(reply_token, body);
+        }
+      );
     }
   );
 }
@@ -51,7 +59,7 @@ function callReplyApi(replyToken, replyMsg) {
     (err, res, body) => {
       console.log('status = ' + res.statusCode);
       console.log('body = ' + body);
-      console.log('error = ', error);
+      console.log('error = ', err);
     }
   );
 }
