@@ -33,7 +33,8 @@ function reply(reply_token, msg) {
           const extract = pages[Object.keys(pages)[0]].extract;
           const cleanExtract = extract.replace(/<(?:.|\n)*?>/gm, '');
           console.log('query data : ', cleanExtract);
-          callReplyApi(reply_token, cleanExtract);
+
+          callReplyApi(reply_token, cleanExtract.slice(0, 2000));
         }
       );
     }
