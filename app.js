@@ -29,6 +29,7 @@ function reply(reply_token, msg) {
         (error, response, body) => {
           console.log(`wiki api body: `, body);
           const queryData = JSON.parse(body);
+          console.log('query data : ', queryData);
           callReplyApi(reply_token, queryData);
         }
       );
