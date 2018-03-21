@@ -28,7 +28,8 @@ function reply(reply_token, msg) {
         },
         (error, response, body) => {
           console.log(`wiki api body: `, body);
-          callReplyApi(reply_token, body);
+          const queryData = body.query.pages;
+          callReplyApi(reply_token, queryData);
         }
       );
     }
